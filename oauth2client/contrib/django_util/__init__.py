@@ -230,7 +230,7 @@ import importlib
 
 import django.conf
 from django.core import exceptions
-from django.url import reverse
+from django.urls import reverse
 from six.moves.urllib import parse
 
 from oauth2client import clientsecrets
