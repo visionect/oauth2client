@@ -351,8 +351,13 @@ class OAuth2Settings(object):
                 'Django settings has neither MIDDLEWARE nor MIDDLEWARE_CLASSES'
                 'configured')
 
-        if ('django.contrib.sessions.middleware.SessionMiddleware' not in
-                middleware_settings):
+        session_middleware = getattr(settings_instance, 'SESSION_MIDDLEWARE', None)
+
+        if session_middleware is None:
+            raise exceptions.ImproperlyConfigured(
+                'Django settings missing SESSION_MIDDLEWARE configuration')
+
+        if (session_middleware not in middleware_settings):
             raise exceptions.ImproperlyConfigured(
                 'The Google OAuth2 Helper requires session middleware to '
                 'be installed. Edit your MIDDLEWARE_CLASSES or MIDDLEWARE '
