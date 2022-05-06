@@ -35,7 +35,7 @@ class CredentialsField(models.Field):
     def get_internal_type(self):
         return 'BinaryField'
 
-    def from_db_value(self, value, expression, connection, context):
+    def from_db_value(self, value, expression, connection):
         """Overrides ``models.Field`` method. This converts the value
         returned from the database to an instance of this class.
         """
